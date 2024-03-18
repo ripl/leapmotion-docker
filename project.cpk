@@ -1,0 +1,9 @@
+{
+    "description": "Docker containerization for using the Leap Motion Controller with ROS.",
+    "maintainer": "Shengjie Lin <slin@ttic.edu>",
+    "name": "leapmotion-docker",
+    "organization": "ripl",
+    "schema": "1.0",
+    "template": null,
+    "version": "0.0.0"
+}
