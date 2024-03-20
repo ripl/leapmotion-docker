@@ -16,7 +16,7 @@ cpk build
 # start the Leap Motion Controller
 cpk run --net host -- --privileged
 # start the GUI demo
-cpk run -L demo --net host -- --privileged
+cpk run -L demo -X --net host -- --privileged
 ```
 
 ## Development
