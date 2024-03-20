@@ -13,6 +13,19 @@ cpk build
 ## Run
 
 ```bash
-cpk run -X --net host -- --privileged
-cpk run -c bash -X --net host -- --privileged
+# start the Leap Motion Controller
+cpk run --net host -- --privileged
+# start the GUI demo
+cpk run -L demo --net host -- --privileged
+```
+
+## Development
+
+```bash
+# start the Leap Motion Controller
+cpk run -fM --net host -- --privileged
+# start the container in interactive mode
+cpk run -f -n dev -c bash -M -X --net host -- --privileged
+# start the container in detached mode
+cpk run -f -n dev -c bash -M -X --net host -d -- --privileged
 ```

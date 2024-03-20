@@ -53,11 +53,9 @@ RUN echo 'deb [arch=amd64] https://repo.ultraleap.com/apt stable main' | tee /et
 COPY ./dependencies-apt.txt "${PROJECT_PATH}/"
 RUN cpk-apt-install ${PROJECT_PATH}/dependencies-apt.txt
 
-# install python3 dependencies
-# RUN pip install -U pip
-COPY ./dependencies-py3.txt "${PROJECT_PATH}/"
-RUN cpk-pip3-install ${PROJECT_PATH}/dependencies-py3.txt
-# RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN wget -qO Miniforge3.sh https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh \
+    && bash Miniforge3.sh -b -p /opt/miniforge3 \
+    && rm Miniforge3.sh
 
 # install launcher scripts
 COPY ./launchers/. "${PROJECT_LAUNCHERS_PATH}/"
@@ -67,15 +65,26 @@ RUN cpk-install-launchers "${PROJECT_LAUNCHERS_PATH}"
 # copy project root
 COPY ./*.cpk ./*.sh ${PROJECT_PATH}/
 
-# copy the source code
+# install python dependencies and packages
+SHELL ["/bin/bash", "-c"]
+COPY ./dependencies-py3.txt "${PROJECT_PATH}/"
 COPY ./packages "${CPK_PROJECT_PATH}/packages"
-
-# # build catkin workspace
-# RUN . /opt/ros/${ROS_DISTRO}/setup.sh && catkin build \
-#     --workspace ${CPK_CODE_DIR}
-
-# install packages dependencies
-RUN cpk-install-packages-dependencies
+RUN . /opt/miniforge3/etc/profile.d/conda.sh \
+    && . /opt/miniforge3/etc/profile.d/mamba.sh \
+    && mamba create -n ros \
+    && mamba activate ros \
+    && pip install -U pip \
+    && conda config --env --add channels robostack-staging \
+    && mamba install -y ros-noetic-desktop-full \
+    && git clone --depth 1 https://github.com/ultraleap/leapc-python-bindings.git /opt/leapc-python-bindings \
+    && cd /opt/leapc-python-bindings/ \
+    && pip install -r requirements.txt \
+    && python -m build leapc-cffi \
+    && pip install leapc-cffi/dist/leapc_cffi-0.0.1.tar.gz \
+    && pip install -e leapc-python-api \
+    && cpk-pip3-install ${PROJECT_PATH}/dependencies-py3.txt \
+    && catkin build --workspace ${CPK_CODE_DIR} \
+    && cpk-install-packages-dependencies
 
 # define default command
 CMD ["bash", "-c", "launcher-${CPK_LAUNCHER}"]
