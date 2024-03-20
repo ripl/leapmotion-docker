@@ -6,7 +6,7 @@
 
 cpk-exec leapd
 leapctl eula -y
-ultraleap-hand-tracking-control-panel
+roslaunch leap_motion_controller lmc.launch
 
 
 # ----------------------------------------------------------------------------

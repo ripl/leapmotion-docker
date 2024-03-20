@@ -13,17 +13,17 @@ cpk build
 ## Run
 
 ```bash
-# start the Leap Motion Controller
-cpk run --net host -- --privileged
+# start the Leap Motion Controller, attaching it to the ROS network on Husky1
+cpk run -L husky1 --net host -- --privileged
+# start the Leap Motion Controller with the local ROS network
+cpk run -L local --net host -- --privileged
 # start the GUI demo
-cpk run -L demo -X --net host -- --privileged
+cpk run -X --net host -- --privileged
 ```
 
 ## Development
 
 ```bash
-# start the Leap Motion Controller
-cpk run -f -M --net host -- --privileged
 # start the container in interactive mode
 cpk run -f -n dev -c bash -M -X --net host -- --privileged
 # start the container in detached mode

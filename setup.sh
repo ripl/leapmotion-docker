@@ -6,4 +6,3 @@
 . ${CPK_CODE_DIR}/devel/setup.bash
 
 export ROS_HOSTNAME=$(hostname).local
-export ROS_MASTER_URI=http://base1.local:11311

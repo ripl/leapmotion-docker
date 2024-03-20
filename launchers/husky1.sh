@@ -4,10 +4,10 @@
 # ----------------------------------------------------------------------------
 
 
-# launching app
 cpk-exec leapd
 leapctl eula -y
-ultraleap-hand-tracking-control-panel
+export ROS_MASTER_URI=http://base1.local:11311
+rosrun leap_motion_controller lmc.py
 
 
 # ----------------------------------------------------------------------------
