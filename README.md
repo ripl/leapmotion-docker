@@ -6,7 +6,7 @@ Docker containerization for developing ROS apps. This image is based on [`ubuntu
 
 ```bash
 cpk decorate -m RIPL ubuntu:22.04 ripl/ubuntu:22.04
-git clone https://github.com/ripl/leapmotion-docker.git && cd leapmotion-docker/
+git clone --recurse-submodules https://github.com/ripl/leapmotion-docker.git && cd leapmotion-docker/
 cpk build
 ```
 
