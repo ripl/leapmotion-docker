@@ -9,8 +9,8 @@ from std_msgs.msg import Header
 class LeapMotionController(leap.Listener):
     def __init__(self):
         super().__init__()
-        rospy.init_node('leap_motion_controller')
-        self.pub = rospy.Publisher('/lmc/hands', Hands, queue_size=10)
+        rospy.init_node('lmc')
+        self.pub = rospy.Publisher('~hands', Hands, queue_size=10)
         rospy.loginfo('LeapMotionController Node is Up!')
         connection = leap.Connection()
         connection.add_listener(self)

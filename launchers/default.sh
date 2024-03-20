@@ -7,7 +7,7 @@
 # launching app
 cpk-exec leapd
 leapctl eula -y
-rosrun leap_motion_controller lmc.py
+roslaunch leap_motion_controller lmc.launch
 
 
 # ----------------------------------------------------------------------------

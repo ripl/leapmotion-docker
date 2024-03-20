@@ -1,0 +1,3 @@
+<launch>
+  <node name="lmc" pkg="leap_motion_controller" type="lmc.py"/>
+</launch>
