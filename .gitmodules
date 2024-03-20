@@ -1,0 +1,3 @@
+[submodule "packages/lmc-msgs"]
+	path = packages/lmc-msgs
+	url = https://github.com/ripl/lmc-msgs.git
