@@ -23,7 +23,7 @@ cpk run -L demo -X --net host -- --privileged
 
 ```bash
 # start the Leap Motion Controller
-cpk run -fM --net host -- --privileged
+cpk run -f -M --net host -- --privileged
 # start the container in interactive mode
 cpk run -f -n dev -c bash -M -X --net host -- --privileged
 # start the container in detached mode
