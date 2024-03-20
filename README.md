@@ -1,6 +1,6 @@
 # LeapMotion Docker
 
-Docker containerization for developing ROS apps. This image is based on [`ubuntu:22.04`](https://hub.docker.com/_/ubuntu), and with tweaks to enable [`cpk`](https://cpk.readthedocs.io/en/latest/), `ros-noetic-desktop-full` and `mDNS`.
+Docker containerization for developing ROS apps. This image is based on [`ubuntu:22.04`](https://hub.docker.com/_/ubuntu), and with tweaks to enable [`cpk`](https://cpk.readthedocs.io/en/latest/), `ros-noetic-desktop-full`, `mDNS`, and the Leap Motion Controller.
 
 ## Build
 
